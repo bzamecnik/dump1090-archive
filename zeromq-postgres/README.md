@@ -1,6 +1,6 @@
 # Archives dump1090 messages via ZeroMQ to Postgres
 
-Inspired by: [qixtand/dump1090-amqp-postgres](https://github.com/qixtand/dump1090-amqp-postgres] but with ZeroMQ instead of RabbitMQ.
+Inspired by: [qixtand/dump1090-amqp-postgres](https://github.com/qixtand/dump1090-amqp-postgres) but with ZeroMQ instead of RabbitMQ.
 
 ## Architecture
 
