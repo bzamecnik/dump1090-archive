@@ -24,7 +24,7 @@ def netcat(hostname, port):
 
 dump1090_host = os.getenv('DUMP1090_HOST', 'localhost')
 # BaseStation CSV format
-dump1090_port = os.getenv('DUMP1090_HOST', '30003')
+dump1090_port = os.getenv('DUMP1090_PORT', '30003')
 
 for message in netcat(dump1090_host, dump1090_port):
     zmq_socket.send_string(message)

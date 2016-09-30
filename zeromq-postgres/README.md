@@ -49,7 +49,8 @@ It already reads from the dump1090 socket, thus there's no need for calling netc
 export ZMQ_HOST=localhost
 export ZMQ_PORT=5556
 export DUMP1090_HOST=localhost
-export DUMP1090_HOST=30003
+export DUMP1090_PORT=30003
+
 python dump1090_publisher.py
 ```
 
