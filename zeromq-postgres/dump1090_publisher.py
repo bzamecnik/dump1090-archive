@@ -27,7 +27,7 @@ dump1090_host = os.getenv('DUMP1090_HOST', 'localhost')
 dump1090_port = os.getenv('DUMP1090_PORT', '30003')
 
 # we add the receiver identifier (eg. MAC address) as the first CSV column
-receiver_id = os.getenv('RECEIVER_ID', '')
+receiver_id = os.getenv('RECEIVER_ID', '').strip()
 
 def add_receiver_id(message):
     return receiver_id + ',' + message

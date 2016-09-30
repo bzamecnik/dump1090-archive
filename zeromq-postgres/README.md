@@ -55,7 +55,7 @@ export DUMP1090_PORT=30003
 # use the ethernet MAC address of eth0 as the receiver identification
 # change this to the desired
 export MAC_ADDR_DEVICE=eth0
-export RECEIVER_ID=$(ifconfig |grep ^${MAC_ADDR_DEVICE}|sed -E -e 's/.*HWaddr ([a-zA-Z0-9:]+)/\1/' -e 's/://g')
+export RECEIVER_ID=$(ifconfig |grep ^${MAC_ADDR_DEVICE}|sed -E -e 's/.*HWaddr ([a-zA-Z0-9:]+) */\1/' -e 's/://g')
 
 python dump1090_publisher.py
 ```

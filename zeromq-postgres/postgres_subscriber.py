@@ -27,6 +27,7 @@ def connect_to_db():
 
 
 def insert_message(cursor, db, message):
+    # ReceiverId,
     # MessageType, TransmissionType, SessionID, AircraftID, HexIdent, FlightID,
     # DateMessageGenerated, TimeMessageGenerated, DateMessageLogged,
     # TimeMessageLogged, Callsign, Altitude, GroundSpeed, Track, Latitude,
@@ -41,8 +42,8 @@ def insert_message(cursor, db, message):
     # Insert the message into the database
     query = """
     INSERT INTO messages
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s);
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+    %s, %s, %s, %s, %s, %s, %s);
     """
     cursor.execute(query, fields)
     db.commit()
