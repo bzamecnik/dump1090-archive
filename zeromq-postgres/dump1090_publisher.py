@@ -16,7 +16,7 @@ time.sleep(1)
 
 def netcat(hostname, port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((hostname, port))
+    s.connect((hostname, int(port)))
     socket_file = s.makefile()
     for line in socket_file:
         yield line.strip()
