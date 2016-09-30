@@ -5,6 +5,7 @@ CREATE DATABASE dump1090 OWNER dump1090 TEMPLATE template0;
 \c dump1090
 
 CREATE TABLE messages (
+    ReceiverId varchar(12),
     MessageType varchar(3),
     TransmissionType smallint,
     SessionID smallint,

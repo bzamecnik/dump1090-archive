@@ -45,11 +45,17 @@ The receiver connects to the ZMQ endpoint and thus it can be behind a NAT.
 
 It already reads from the dump1090 socket, thus there's no need for calling netcat.
 
+In order to support message streams from multiple receivers we add the receiver identifier (eg. MAC address) as the first CSV column.
+
 ```
 export ZMQ_HOST=localhost
 export ZMQ_PORT=5556
 export DUMP1090_HOST=localhost
 export DUMP1090_PORT=30003
+# use the ethernet MAC address of eth0 as the receiver identification
+# change this to the desired
+export MAC_ADDR_DEVICE=eth0
+export RECEIVER_ID=$(ifconfig |grep ^${MAC_ADDR_DEVICE}|sed -E -e 's/.*HWaddr ([a-zA-Z0-9:]+)/\1/' -e 's/://g')
 
 python dump1090_publisher.py
 ```
@@ -73,7 +79,6 @@ What will be good, but is (probably) not there yet:
 
 - robustness against network connection outages
 - queueing messages on the producer if it's offline
-- marking messages with the receiver ID (add a new column)
 - parsing dates
 - robustness against malformed messages
 - more graceful shutdown

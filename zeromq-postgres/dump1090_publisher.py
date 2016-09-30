@@ -26,5 +26,11 @@ dump1090_host = os.getenv('DUMP1090_HOST', 'localhost')
 # BaseStation CSV format
 dump1090_port = os.getenv('DUMP1090_PORT', '30003')
 
+# we add the receiver identifier (eg. MAC address) as the first CSV column
+receiver_id = os.getenv('RECEIVER_ID', '')
+
+def add_receiver_id(message):
+    return receiver_id + ',' + message
+
 for message in netcat(dump1090_host, dump1090_port):
-    zmq_socket.send_string(message)
+    zmq_socket.send_string(add_receiver_id(message))
