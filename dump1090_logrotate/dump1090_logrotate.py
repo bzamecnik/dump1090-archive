@@ -52,9 +52,7 @@ class FileRotator():
         self.interval = interval
         self.compression = compression
 
-        # Timestamp at the end is to prevent overwriting files in case we
-        # restart the process. New run will go to another file.
-        self.date_format = 'YYYY-MM-DD-HH-mm-ss-X'
+        self.date_format = 'YYYY-MM-DD-HH-mm-ss'
         self.output_file = None
         self.next_log_time = arrow.get(0)
 
@@ -78,7 +76,10 @@ class FileRotator():
     def rotate_file(self):
         self.close()
         self.update_log_time()
-        date_part = self.current_log_time.format(self.date_format)
+        # Timestamp at the end is to prevent overwriting files in case we
+        # restart the process. New run will go to another file.
+        date_part = (self.current_log_time.format(self.date_format) +
+            '-' + arrow.utcnow.format('X'))
         file_name = self.file_pattern.format(date_part)
         os.makedirs(os.path.dirname(file_name), exist_ok=True)
         print('writing to:', file_name)
