@@ -79,7 +79,7 @@ class FileRotator():
         # Timestamp at the end is to prevent overwriting files in case we
         # restart the process. New run will go to another file.
         date_part = (self.current_log_time.format(self.date_format) +
-            '-' + arrow.utcnow.format('X'))
+            '-' + arrow.utcnow().format('X'))
         file_name = self.file_pattern.format(date_part)
         os.makedirs(os.path.dirname(file_name), exist_ok=True)
         print('writing to:', file_name)
