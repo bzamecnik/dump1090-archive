@@ -31,6 +31,7 @@ git clone https://github.com/bzamecnik/dump1090-archive.git
 sudo cp dump1090-archive/dump1090_logrotate/systemd/dump1090-logrotate.service \
   /lib/systemd/system/dump1090-logrotate.service
 sudo systemctl daemon-reload
+sudo systemctl enable dump1090-logrotate.service
 sudo systemctl start dump1090-logrotate.service
 
 # other commands:
