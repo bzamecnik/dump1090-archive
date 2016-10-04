@@ -1,10 +1,19 @@
 [Unit]
 Description=Stores dump1090 messages to rotated files
+# In this case we depend on dump1090 by FlightAware packaged also as as systemd
+# service. Change to your configuration if your dump1090 is started otherwise.
+Wants=dump1090-fa.service
+After=dump1090-fa.service
 
 [Service]
+# for Raspberry Pi
+User=pi
+Group=pi
 Type=simple
 WorkingDirectory=/home/pi
 ExecStart=/home/pi/dump1090-archive/dump1090_logrotate/systemd/start.sh
+Restart=on-failure
+RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
