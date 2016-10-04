@@ -103,11 +103,13 @@ dump1090_host = os.getenv('DUMP1090_HOST', 'localhost')
 dump1090_port = os.getenv('DUMP1090_PORT', '30003')
 
 def main(host, port, output_prefix, interval):
+    print(arrow.get(), 'Start.')
     killer = GracefulKiller()
     with FileRotator(output_prefix, interval) as output_file:
         for line in dump1090_socket(host, port):
             output_file.write(line)
             if killer.kill_now:
+                print(arrow.get(), 'Stop.')
                 break
 
 def parse_args():
