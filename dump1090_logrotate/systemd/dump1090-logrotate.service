@@ -1,0 +1,11 @@
+[Unit]
+Description=Stores dump1090 messages to rotated files
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi
+ExecStart=/home/pi/dump1090-archive/dump1090_logrotate/systemd/start.sh
+
+[Install]
+WantedBy=multi-user.target
+Alias=dump1090-logrotate.service
